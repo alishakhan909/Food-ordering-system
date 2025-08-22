@@ -1,0 +1,35 @@
+<!-- templates/bill.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Your Bill</title>
+</head>
+<body>
+  <h1>Your Bill</h1>
+
+  {% if order %}
+    <table>
+      <tr><th>Item</th><th>Qty</th><th>Cost (Rs)</th></tr>
+      {% for item, qty, cost in order %}
+      <tr>
+        <td>{{ item }}</td>
+        <td>{{ qty }}</td>
+        <td>{{ cost }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <p>Subtotal: Rs {{ subtotal }}</p>
+    {% if discount %}
+      <p>Discount: -Rs {{ discount }}</p>
+    {% endif %}
+    <h3>Total: Rs {{ total }}</h3>
+
+  {% else %}
+    <p>No items ordered.</p>
+  {% endif %}
+
+  <p><a href="/">Place another order</a></p>
+</body>
+</html>
